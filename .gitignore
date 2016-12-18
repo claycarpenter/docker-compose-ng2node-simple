@@ -1,1 +1,5 @@
 node_modules
+
+# Build files
+front/app/*.js
+front/app/*.js.map
