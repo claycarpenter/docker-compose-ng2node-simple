@@ -1,18 +1,30 @@
+version: '2'
 
-front:
-  build: ./front
-  volumes:
-    - ./front:/app
-  ports:
-    - "8080:8080"
-  links:
-    - api
+services:
+  front:
+    build: ./front
+    volumes:
+      - front-data-sync:/app:rw
+    # volumes:
+    #   - ./front:/app
+    ports:
+      - "8080:8080"
+    links:
+      - api
+  api:
+    build: ./api
+    # volumes:
+    #   - ./api:/app
+    volumes:
+      - api-data-sync:/app:rw
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
 
-api:
-  build: ./api
-  volumes:
-    - ./api:/app
-  ports:
-    - '3000:3000'
-  expose:
-    - '3000'
+# container name from before
+volumes:
+  front-data-sync:
+    external: true
+  api-data-sync:
+    external: true
