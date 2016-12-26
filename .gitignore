@@ -1,5 +1,12 @@
+# Node local module install, logs
 node_modules
+npm-debug.log
+
 
 # Build files
 front/app/*.js
 front/app/*.js.map
+
+
+# File sync (Unison) temp files
+*.unison.tmp
