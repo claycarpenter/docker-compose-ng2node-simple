@@ -4,27 +4,16 @@ services:
   front:
     build: ./front
     volumes:
-      - front-data-sync:/app:rw
-    # volumes:
-    #   - ./front:/app
+      - ./front:/app:delegated
     ports:
       - "8080:8080"
     links:
       - api
   api:
     build: ./api
-    # volumes:
-    #   - ./api:/app
     volumes:
-      - api-data-sync:/app:rw
+      - ./api:/app:delegated
     ports:
       - '3000:3000'
     expose:
       - '3000'
-
-# container name from before
-volumes:
-  front-data-sync:
-    external: true
-  api-data-sync:
-    external: true
